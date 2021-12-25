@@ -41,4 +41,4 @@ print("PERFS TRAIN: %s: %.2f%%" % (model.metrics_names[1], scores_train[1]*100))
 print("PERFS TEST: %s: %.2f%%" % (model.metrics_names[1], scores_test[1]*100))
 
 # Sauvegarde du modèle
-save_model(model, "modèle_exo1")
+save_model(model, "modele_exo1")
