@@ -1,6 +1,6 @@
 """
 TP 4 - Réseaux de neurones récurrents
-Exercice 1 : Apprentissage d’un modèle auto-supervisé pour la génération de texte
+Exercice 1 : Apprentissage d’un modèle autosupervisé pour la génération de texte
 Fait par : SAIDOUCHE Nor El Houda & HANACHI Ourida
 """
 # Importation des bibliothèques
@@ -20,7 +20,7 @@ nb_chars = 60
 # Création du modèle
 model = Sequential()
 HSIZE = 128
-model.add(SimpleRNN(HSIZE, return_sequences=False, input_shape=(SEQLEN, nb_chars),unroll=True))
+model.add(SimpleRNN(HSIZE, return_sequences=False, input_shape=(SEQLEN, nb_chars), unroll=True))
 model.add(Dense(nb_chars))
 model.add(Activation("softmax"))
 
