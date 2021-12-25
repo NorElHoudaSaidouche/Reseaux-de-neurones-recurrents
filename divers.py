@@ -5,6 +5,8 @@ Fait par : SAIDOUCHE Nor El Houda & HANACHI Ourida
 """
 # Importation des bibliothèques
 from requests import get
+from keras.models import model_from_yaml
+import numpy as np
 
 
 def download(url, file_name):
@@ -25,3 +27,20 @@ def save_model(model, savename):
     # serialize weights to HDF5
     model.save_weights(savename + ".h5")
     print("Weights ", savename, ".h5 saved to disk")
+
+
+def load_model(savename):
+    with open(savename + ".yaml", "r") as yaml_file:
+        model = model_from_yaml(yaml_file.read())
+    print("Yaml Model ", savename, ".yaml loaded ")
+    model.load_weights(savename + ".h5")
+    print("Weights ", savename, ".h5 loaded ")
+    return model
+
+
+def sampling(preds, temperature=1.0):
+    preds = np.asarray(preds).astype('float64')
+    predsN = pow(preds, 1.0 / temperature)
+    predsN /= np.sum(predsN)
+    probas = np.random.multinomial(1, predsN, 1)
+    return np.argmax(probas)
